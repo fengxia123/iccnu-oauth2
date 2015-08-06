@@ -1,37 +1,25 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Iccnu-oauth2 : iccnu的oauth2认证服务说明文档">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Iccnu-oauth2</title>
+    <meta charset="UTF-8">
+    <title>Iccnu-oauth2 by ccnuyan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">Iccnu-oauth2</h1>
+      <h2 class="project-tagline">iccnu的oauth2认证服务说明文档</h2>
+      <a href="https://github.com/ccnuyan/iccnu-oauth2" class="btn">View on GitHub</a>
+      <a href="https://github.com/ccnuyan/iccnu-oauth2/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/ccnuyan/iccnu-oauth2/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/ccnuyan/iccnu-oauth2">View on GitHub</a>
-
-          <h1 id="project_title">Iccnu-oauth2</h1>
-          <h2 id="project_tagline">iccnu的oauth2认证服务说明文档</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/ccnuyan/iccnu-oauth2/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/ccnuyan/iccnu-oauth2/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
+    <section class="main-content">
+      <h1>
 <a id="iccnu-oauth2-authentication-flow-instruction" class="anchor" href="#iccnu-oauth2-authentication-flow-instruction" aria-hidden="true"><span class="octicon octicon-link"></span></a>ICCNU Oauth2 Authentication Flow Instruction</h1>
 
 <hr>
@@ -39,8 +27,21 @@
 <h2>
 <a id="before-you-begin" class="anchor" href="#before-you-begin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Before You Begin</h2>
 
-<p>这里是各应用的 OAuth2 的认证流程，而不涉及OAuth2的授权。
-  你需要考虑你的应用是哪种情形，分别使用不同的认证方式，其中针对应用的不同类型B/S应用需要参考Authorization Code Flow，C/S应用需要参考Resource Owner Flow；另外针对应用是否已上线并存在用户群体，需要参考不同的创建新用户或banding已有账户的方式。</p>
+<p>这里是租户应用的调用认证主站 OAuth2 的认证服务的认证流程。这个文档给租户应用的开发者参考。</p>
+
+<p>作为应用的开发者，你需要考虑你的应用是哪种情形，从而使用不同的认证流，其中针对应用的不同类型，B/S应用需要参考Authorization Code Grant Flow，C/S应用需要参考Resource Owner Flow</p>
+
+<p>认证流程结束后，租户应用需要根据自己的应用是否已上线并存在用户群体，继续创建新用户或绑定已有账户的登录流程。</p>
+
+<p>附注：</p>
+
+<p>认证站点: <a href="http://www.iccnu.net/">http://www.iccnu.net/</a></p>
+
+<p>认证页面: <a href="http://www.iccnu.net/oauth2/authorize">http://www.iccnu.net/oauth2/authorize</a></p>
+
+<p>AccessToken API End Point：<a href="http://www.iccnu.net/api/oauth2/token">http://www.iccnu.net/api/oauth2/token</a></p>
+
+<p>Me API End Point <a href="http://www.iccnu.net/api/oauth2/me">http://www.iccnu.net/api/oauth2/me</a></p>
 
 <hr>
 
@@ -63,16 +64,23 @@
 <ol>
 <li><p>你的用户需要现在ICCNU上注册为用户。</p></li>
 <li>
-<p>你需要将你的应用申请成为ICCNU认证服务的租户。
-租户需要为站点提供的信息包括</p>
+<p>你需要将你的应用申请成为ICCNU认证服务的租户。</p>
 
-<p>回调地址 "redirectURI" : "http://localhost:8080/account/login"
-租户应用Id "id" : "code_test"
-租户应用密码 "secret" : *****
-主页地址 "homeURI" : "http://localhost:8080/"
-租户应用名 "name" : "测试应用名1"
-租户应用描述 "description" : "这里是测试应用1的描述信息"
-认证类型 "authType" : "code"</p>
+<p>租户需要为站点提供的信息包括</p>
+
+<p>回调地址 "redirectURI" : "http://localhost:8080/account/login"</p>
+
+<p>租户应用Id "id" : "code_test"</p>
+
+<p>租户应用密码 "secret" : *****</p>
+
+<p>主页地址 "homeURI" : "http://localhost:8080/"</p>
+
+<p>租户应用名 "name" : "测试应用名1"</p>
+
+<p>租户应用描述 "description" : "这里是测试应用1的描述信息"</p>
+
+<p>认证类型 "authType" : "code"</p>
 
 <p>其中，回调地址、租户应用Id及租户应用密码为Authorization Code Grant Flow认证流程中需要用到的必须字段; 主页地址，租户应用名, 租户应用描述为显示给用户的字段，不是必须的；认证类型在Authorization Code Grant Flow中固定为"Code"。   </p>
 </li>
@@ -100,18 +108,25 @@
 <ol>
 <li><p>你的用户需要现在ICCNU上注册为用户。</p></li>
 <li>
-<p>你需要将你的应用申请成为ICCNU认证服务的租户。
-租户需要为站点提供的信息包括</p>
+<p>你需要将你的应用申请成为ICCNU认证服务的租户。</p>
 
-<p>租户应用Id "id" : "code_test"
-租户应用密码 "secret" : *****
-主页地址 "homeURI" : "http://localhost:8080/"
-租户应用名 "name" : "测试应用名1"
-租户应用描述 "description" : "这里是测试应用1的描述信息"
-认证类型 "authType" : "resource_owner"</p>
+<p>租户需要为站点提供的信息包括</p>
 
-<p>其中，租户应用Id及租户应用密码为Resource Owner Flow认证流程中需要用到的必须字段; 主页地址，租户应用名, 租户应用描述为显示给用户的字段，不是必须的；认证类型在Authorization Code Grant Flow中固定为"resource_owner"。<br>
-C/S应用并不是在浏览器中进行认证流程，所以不需要提供回调地址字段。</p>
+<p>租户应用Id "id" : "code_test"</p>
+
+<p>租户应用密码 "secret" : *****</p>
+
+<p>主页地址 "homeURI" : "http://localhost:8080/"</p>
+
+<p>租户应用名 "name" : "测试应用名1"</p>
+
+<p>租户应用描述 "description" : "这里是测试应用1的描述信息"</p>
+
+<p>认证类型 "authType" : "resource_owner"</p>
+
+<p>其中，租户应用Id及租户应用密码为Resource Owner Flow认证流程中需要用到的必须字段; 主页地址，租户应用名, 租户应用描述为显示给用户的字段，不是必须的；认证类型在Authorization Code Grant Flow中固定为"resource_owner"。   </p>
+
+<p>C/S应用并不是在浏览器中进行认证流程，所以不需要提供回调地址字段。</p>
 </li>
 </ol>
 
@@ -124,19 +139,16 @@ C/S应用并不是在浏览器中进行认证流程，所以不需要提供回�
 
 <p>3 租户通过AccessToken调用认证站点的Me服务，得到用户的认证信息，认证流程结束。</p>
 
-<p>此时租户已经知道调用认证站点ICCNU登录的用户的基本信息，可以继续租户自己的业务（绑定已存在的本地用户或者根据登录信息创建用户等等）。</p>
-      </section>
-    </div>
+<p>此时租户已经知道登录用户的基本信息，可以继续租户自己的业务（绑定已存在的本地用户或者根据登录信息创建用户等等）。</p>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Iccnu-oauth2 maintained by <a href="https://github.com/ccnuyan">ccnuyan</a></p>
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/ccnuyan/iccnu-oauth2">Iccnu-oauth2</a> is maintained by <a href="https://github.com/ccnuyan">ccnuyan</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
 
-    
+    </section>
 
+  
   </body>
 </html>
