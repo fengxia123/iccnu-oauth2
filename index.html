@@ -36,41 +36,95 @@
 
 <hr>
 
-<h1>
-<a id="before-you-begin" class="anchor" href="#before-you-begin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Before You Begin</h1>
+<h2>
+<a id="before-you-begin" class="anchor" href="#before-you-begin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Before You Begin</h2>
 
 <p>这里是各应用的 OAuth2 的认证流程，而不涉及OAuth2的授权。
   你需要考虑你的应用是哪种情形，分别使用不同的认证方式，其中针对应用的不同类型B/S应用需要参考Authorization Code Flow，C/S应用需要参考Resource Owner Flow；另外针对应用是否已上线并存在用户群体，需要参考不同的创建新用户或banding已有账户的方式。</p>
 
 <hr>
 
-<h3>
-<a id="1-已上线的应用已有用户及账户的bs应用" class="anchor" href="#1-%E5%B7%B2%E4%B8%8A%E7%BA%BF%E7%9A%84%E5%BA%94%E7%94%A8%E5%B7%B2%E6%9C%89%E7%94%A8%E6%88%B7%E5%8F%8A%E8%B4%A6%E6%88%B7%E7%9A%84bs%E5%BA%94%E7%94%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>1 已上线的应用（已有用户及账户）的B/S应用</h3>
+<h4>
+<a id="1租户为bs应用" class="anchor" href="#1%E7%A7%9F%E6%88%B7%E4%B8%BAbs%E5%BA%94%E7%94%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.租户为B/S应用</h4>
 
-<hr>
+<p>需要参考 Authorization Code Grant Flow，用户在认证站点登录并跳转至您的应用后，应提示用户绑定已有账户或直接创建新用户，后进入登录状态。</p>
 
-<p>需要参考Authorization Code Flow，用户在认证站点登录并跳转至您的应用后，应提示用户绑定已有账户或直接创建新用户，后进入登录状态。</p>
+<h4>
+<a id="2租户为cs应用" class="anchor" href="#2%E7%A7%9F%E6%88%B7%E4%B8%BAcs%E5%BA%94%E7%94%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.租户为C/S应用</h4>
 
-<h3>
-<a id="2-已上线的应用已有用户及账户的cs应用" class="anchor" href="#2-%E5%B7%B2%E4%B8%8A%E7%BA%BF%E7%9A%84%E5%BA%94%E7%94%A8%E5%B7%B2%E6%9C%89%E7%94%A8%E6%88%B7%E5%8F%8A%E8%B4%A6%E6%88%B7%E7%9A%84cs%E5%BA%94%E7%94%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>2 已上线的应用（已有用户及账户）的C/S应用</h3>
+<p>需要参考 Resource Owner Flow，用户登录至您的应用后，应提示用户绑定已有账户或直接创建新用户，后进入登录状态。</p>
 
-<hr>
+<h2>
+<a id="1-租户为bs应用-authorization-code-grant-flow" class="anchor" href="#1-%E7%A7%9F%E6%88%B7%E4%B8%BAbs%E5%BA%94%E7%94%A8-authorization-code-grant-flow" aria-hidden="true"><span class="octicon octicon-link"></span></a>1 租户为B/S应用: Authorization Code Grant Flow</h2>
 
-<p>需要参考Resource Owner Flow，用户登录至您的应用后，应提示用户绑定已有账户或直接创建新用户，后进入登录状态。</p>
+<h4>
+<a id="使用先决条件" class="anchor" href="#%E4%BD%BF%E7%94%A8%E5%85%88%E5%86%B3%E6%9D%A1%E4%BB%B6" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用先决条件</h4>
 
-<h3>
-<a id="3-尚未上线的应用尚无用户及账户的bs应用" class="anchor" href="#3-%E5%B0%9A%E6%9C%AA%E4%B8%8A%E7%BA%BF%E7%9A%84%E5%BA%94%E7%94%A8%E5%B0%9A%E6%97%A0%E7%94%A8%E6%88%B7%E5%8F%8A%E8%B4%A6%E6%88%B7%E7%9A%84bs%E5%BA%94%E7%94%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>3 尚未上线的应用（尚无用户及账户）的B/S应用</h3>
+<ol>
+<li><p>你的用户需要现在ICCNU上注册为用户。</p></li>
+<li>
+<p>你需要将你的应用申请成为ICCNU认证服务的租户。
+租户需要为站点提供的信息包括</p>
 
-<hr>
+<p>回调地址 "redirectURI" : "http://localhost:8080/account/login"
+租户应用Id "id" : "code_test"
+租户应用密码 "secret" : *****
+主页地址 "homeURI" : "http://localhost:8080/"
+租户应用名 "name" : "测试应用名1"
+租户应用描述 "description" : "这里是测试应用1的描述信息"
+认证类型 "authType" : "code"</p>
 
-<p>需要参考Authorization Code Flow，用户在认证站点登录并跳转至您的应用后在后台直接创建新用户并进入登录状态。</p>
+<p>其中，回调地址、租户应用Id及租户应用密码为Authorization Code Grant Flow认证流程中需要用到的必须字段; 主页地址，租户应用名, 租户应用描述为显示给用户的字段，不是必须的；认证类型在Authorization Code Grant Flow中固定为"Code"。   </p>
+</li>
+</ol>
 
-<h3>
-<a id="4-尚未上线的应用尚无用户及账户的cs应用" class="anchor" href="#4-%E5%B0%9A%E6%9C%AA%E4%B8%8A%E7%BA%BF%E7%9A%84%E5%BA%94%E7%94%A8%E5%B0%9A%E6%97%A0%E7%94%A8%E6%88%B7%E5%8F%8A%E8%B4%A6%E6%88%B7%E7%9A%84cs%E5%BA%94%E7%94%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>4 尚未上线的应用（尚无用户及账户）的C/S应用</h3>
+<h4>
+<a id="认证流程" class="anchor" href="#%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B" aria-hidden="true"><span class="octicon octicon-link"></span></a>认证流程</h4>
 
-<hr>
+<p>1 用户点击租户应用网页上的“使用ICCNU账户登录”时，携带租户注册参数（包括回调地址，租户应用Id，认证类型等）跳转到认证页面。</p>
 
-<p>需要参考Resource Owner Flow，用户登录至您的应用后，应创建新用户并进入登录状态。</p>
+<p>2 用户登录后，认证页面呈现你的应用信息及用户个人信息，用户授权租户应用（用户授权租户、表示用户允许租户应用通过获得到的AccessToken访问认证主站的服务，包括网盘服务，资源服务等，获得到用户的资源）之后，携带code跳转回你的应用的回调页面。</p>
+
+<p>3 回调页面在处理逻辑中，携带code及租户的信息（包括回调地址，租户应用Id，租户应用密码，认证类型）及申请访问的服务域（暂为全域）等，调用认证站点的token服务，得到用户的AccessToken。</p>
+
+<p>4 租户通过AccessToken调用认证站点的Me服务，得到用户的认证信息，认证流程结束。</p>
+
+<p>此时租户已经知道调用认证站点ICCNU登录的用户的基本信息，可以继续租户自己的业务（绑定已存在的本地用户或者根据登录信息创建用户等等）。</p>
+
+<h2>
+<a id="1-租户为cs应用-resource-owner-flow" class="anchor" href="#1-%E7%A7%9F%E6%88%B7%E4%B8%BAcs%E5%BA%94%E7%94%A8-resource-owner-flow" aria-hidden="true"><span class="octicon octicon-link"></span></a>1 租户为C/S应用: Resource Owner Flow</h2>
+
+<h4>
+<a id="使用先决条件-1" class="anchor" href="#%E4%BD%BF%E7%94%A8%E5%85%88%E5%86%B3%E6%9D%A1%E4%BB%B6-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用先决条件</h4>
+
+<ol>
+<li><p>你的用户需要现在ICCNU上注册为用户。</p></li>
+<li>
+<p>你需要将你的应用申请成为ICCNU认证服务的租户。
+租户需要为站点提供的信息包括</p>
+
+<p>租户应用Id "id" : "code_test"
+租户应用密码 "secret" : *****
+主页地址 "homeURI" : "http://localhost:8080/"
+租户应用名 "name" : "测试应用名1"
+租户应用描述 "description" : "这里是测试应用1的描述信息"
+认证类型 "authType" : "resource_owner"</p>
+
+<p>其中，租户应用Id及租户应用密码为Resource Owner Flow认证流程中需要用到的必须字段; 主页地址，租户应用名, 租户应用描述为显示给用户的字段，不是必须的；认证类型在Authorization Code Grant Flow中固定为"resource_owner"。<br>
+C/S应用并不是在浏览器中进行认证流程，所以不需要提供回调地址字段。</p>
+</li>
+</ol>
+
+<h4>
+<a id="认证流程-1" class="anchor" href="#%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>认证流程</h4>
+
+<p>1 用户点击客户端的“使用ICCNU账户登录”时，输入在认证站点上注册的用户名与密码。</p>
+
+<p>2 客户端在后台携带用户输入的用户名与密码及租户的信息（包括回调地址，租户应用Id，租户应用密码，认证类型）及申请访问的服务域（暂为全域）等，调用认证站点的token服务，得到用户的AccessToken。</p>
+
+<p>3 租户通过AccessToken调用认证站点的Me服务，得到用户的认证信息，认证流程结束。</p>
+
+<p>此时租户已经知道调用认证站点ICCNU登录的用户的基本信息，可以继续租户自己的业务（绑定已存在的本地用户或者根据登录信息创建用户等等）。</p>
       </section>
     </div>
 
