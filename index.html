@@ -57,18 +57,8 @@
 
 <p>需要参考 Resource Owner Password Credentials Grant Flow，用户登录至您的应用后，应提示用户绑定已有账户或直接创建新用户，后进入登录状态。</p>
 
-<p>附注：</p>
-
-<p><strong>认证站点:</strong> <a href="http://www.iccnu.net/">http://www.iccnu.net/</a></p>
-
-<p><strong>认证页面:</strong> <a href="http://www.iccnu.net/oauth2/authorize">http://www.iccnu.net/oauth2/authorize</a></p>
-
-<p><strong>AccessToken API End Point:</strong> <a href="http://www.iccnu.net/api/oauth2/token">http://www.iccnu.net/api/oauth2/token</a></p>
-
-<p><strong>Me API End Point:</strong> <a href="http://www.iccnu.net/api/oauth2/me">http://www.iccnu.net/api/oauth2/me</a></p>
-
 <h2>
-<a id="1-租户为bs应用-authorization-code-grant-flow" class="anchor" href="#1-%E7%A7%9F%E6%88%B7%E4%B8%BAbs%E5%BA%94%E7%94%A8-authorization-code-grant-flow" aria-hidden="true"><span class="octicon octicon-link"></span></a>1 租户为B/S应用: Authorization Code Grant Flow</h2>
+<a id="1-租户为bs应用-使用-authorization-code-grant-flow-认证" class="anchor" href="#1-%E7%A7%9F%E6%88%B7%E4%B8%BAbs%E5%BA%94%E7%94%A8-%E4%BD%BF%E7%94%A8-authorization-code-grant-flow-%E8%AE%A4%E8%AF%81" aria-hidden="true"><span class="octicon octicon-link"></span></a>1 租户为B/S应用: 使用 Authorization Code Grant Flow 认证</h2>
 
 <h4>
 <a id="使用先决条件" class="anchor" href="#%E4%BD%BF%E7%94%A8%E5%85%88%E5%86%B3%E6%9D%A1%E4%BB%B6" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用先决条件</h4>
@@ -78,7 +68,7 @@
 <li><p>你需要将你的应用申请成为ICCNU认证服务的租户。</p></li>
 </ol>
 
-<p>租户应用需要为站点提供的信息包括</p>
+<p>申请成为ICCNU认证服务的租户时，租户应用需要为认证站点管理员提供的信息包括：</p>
 
 <p><strong>回调地址</strong> "redirectURI" : "http://localhost:8080/account/login"</p>
 
@@ -110,7 +100,7 @@
 <p>此时租户应用已经知道调用认证站点ICCNU登录的用户的基本信息，可以继续租户应用自己的业务（绑定已存在的本地用户或者根据登录信息创建用户等等）。</p>
 
 <h2>
-<a id="1-租户为cs应用-resource-owner-password-credentials-grant-flow" class="anchor" href="#1-%E7%A7%9F%E6%88%B7%E4%B8%BAcs%E5%BA%94%E7%94%A8-resource-owner-password-credentials-grant-flow" aria-hidden="true"><span class="octicon octicon-link"></span></a>1 租户为C/S应用: Resource Owner Password Credentials Grant Flow</h2>
+<a id="2-租户为cs应用-使用-resource-owner-password-credentials-grant-flow-认证" class="anchor" href="#2-%E7%A7%9F%E6%88%B7%E4%B8%BAcs%E5%BA%94%E7%94%A8-%E4%BD%BF%E7%94%A8-resource-owner-password-credentials-grant-flow-%E8%AE%A4%E8%AF%81" aria-hidden="true"><span class="octicon octicon-link"></span></a>2 租户为C/S应用: 使用 Resource Owner Password Credentials Grant Flow 认证</h2>
 
 <h4>
 <a id="使用先决条件-1" class="anchor" href="#%E4%BD%BF%E7%94%A8%E5%85%88%E5%86%B3%E6%9D%A1%E4%BB%B6-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用先决条件</h4>
@@ -120,7 +110,7 @@
 <li><p>你需要将你的应用申请成为ICCNU认证服务的租户。</p></li>
 </ol>
 
-<p>租户应用需要为站点提供的信息包括</p>
+<p>申请成为ICCNU认证服务的租户时，租户应用需要为认证站点管理员提供的信息包括：</p>
 
 <p><strong>租户应用Id</strong> "id" : "code_test"</p>
 
@@ -170,6 +160,16 @@
 <p>dot net CS Resource Owner Password Credentials Grant：dot net C/S 例子</p>
 
 <p>node.js BS Authorization Code Grant：node.js B/S 例子</p>
+
+<p>附注：</p>
+
+<p><strong>认证站点:</strong> <a href="http://www.iccnu.net/">http://www.iccnu.net/</a></p>
+
+<p><strong>认证页面:</strong> <a href="http://www.iccnu.net/oauth2/authorize">http://www.iccnu.net/oauth2/authorize</a></p>
+
+<p><strong>AccessToken API End Point:</strong> <a href="http://www.iccnu.net/api/oauth2/token">http://www.iccnu.net/api/oauth2/token</a></p>
+
+<p><strong>Me API End Point:</strong> <a href="http://www.iccnu.net/api/oauth2/me">http://www.iccnu.net/api/oauth2/me</a></p>
       </section>
     </div>
 
