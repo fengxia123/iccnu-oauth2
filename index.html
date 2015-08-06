@@ -41,7 +41,7 @@
 
 <p>这里是租户应用的调用认证主站 OAuth2 的认证服务的认证流程。这个文档给租户应用的开发者参考。</p>
 
-<p>作为应用的开发者，你需要考虑你的应用是哪种情形，从而使用不同的认证流，其中针对应用的不同类型，B/S应用需要参考Authorization Code Grant Flow，C/S应用需要参考Resource Owner Password Credentials Grant Flow</p>
+<p>作为应用的开发者，你需要针对应用的不同类型，对需要采用的认证流程进行选择。B/S应用需要参考Authorization Code Grant Flow，C/S应用需要参考Resource Owner Password Credentials Grant Flow。</p>
 
 <p>认证流程结束后，租户应用需要根据自己的应用是否已上线并存在用户群体，继续创建新用户或绑定已有账户的登录流程。</p>
 
@@ -65,7 +65,7 @@
 <h4>
 <a id="2租户为cs应用" class="anchor" href="#2%E7%A7%9F%E6%88%B7%E4%B8%BAcs%E5%BA%94%E7%94%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.租户为C/S应用</h4>
 
-<p>需要参考 Resource Owner Flow，用户登录至您的应用后，应提示用户绑定已有账户或直接创建新用户，后进入登录状态。</p>
+<p>需要参考 Resource Owner Password Credentials Grant Flow，用户登录至您的应用后，应提示用户绑定已有账户或直接创建新用户，后进入登录状态。</p>
 
 <h2>
 <a id="1-租户为bs应用-authorization-code-grant-flow" class="anchor" href="#1-%E7%A7%9F%E6%88%B7%E4%B8%BAbs%E5%BA%94%E7%94%A8-authorization-code-grant-flow" aria-hidden="true"><span class="octicon octicon-link"></span></a>1 租户为B/S应用: Authorization Code Grant Flow</h2>
