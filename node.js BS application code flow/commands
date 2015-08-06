@@ -1,0 +1,13 @@
+git clone https://github.com/ccnuyan/wecourse.git
+docker build --tag ubuntu-wecourse-nodejs:1.0 .
+
+
+docker run -p 8001:8080 --name=wecourse-node01 --link=wecourse-db:wecourse-db -d ubuntu-wecourse-nodejs:1.0
+
+
+docker run -p 8001:8080 --name=wecourse-node02 --link=wecourse-db:wecourse-db -d ubuntu-wecourse-nodejs:1.0
+
+
+docker run -p 8001:8080 --name=wecourse-node03 --link=wecourse-db:wecourse-db -d ubuntu-wecourse-nodejs:1.0
+
+

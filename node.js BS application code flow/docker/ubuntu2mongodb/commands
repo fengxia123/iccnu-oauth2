@@ -1,0 +1,5 @@
+docker build --tag ubuntu-mongodb:1.0 .
+docker run -p 8888:8888 --name=ubuntu-mongodb -d -v /data/db:/data/db ubuntu-mongodb:1.0
+
+mkdir /data/db
+cat mkdir /data/db/mongodb.log

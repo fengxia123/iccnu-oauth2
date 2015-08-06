@@ -1,0 +1,2 @@
+docker build --tag ubuntu-nodejs:1.0 .
+docker run -it ubuntu-nodejs:1.0

@@ -1,0 +1,5 @@
+docker build --tag ubuntu-wecourse-db:1.0 .
+docker run -p 8888:8888 --name=wecourse-db -d -v /data/db:/data/db ubuntu-wecourse-db:1.0
+
+mkdir /data/db
+cat mkdir /data/db/mongodb.log
