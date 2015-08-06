@@ -1,1 +1,1 @@
-https://www.github.io/ccnuyan/iccnu-oauth2
+http://ccnuyan.github.io/iccnu-oauth2
