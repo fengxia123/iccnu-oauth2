@@ -155,21 +155,50 @@
 <h2>
 <a id="包中的内容" class="anchor" href="#%E5%8C%85%E4%B8%AD%E7%9A%84%E5%86%85%E5%AE%B9" aria-hidden="true"><span class="octicon octicon-link"></span></a>包中的内容</h2>
 
-<p>dot net BS Authorization Code Grant：dot net B/S 例子</p>
+<p><strong>dot net BS Authorization Code Grant：</strong>dot net B/S 例子 (认证流程见附2)</p>
 
-<p>dot net CS Resource Owner Password Credentials Grant：dot net C/S 例子</p>
+<p><strong>dot net CS Resource Owner Password Credentials Grant：</strong>dot net C/S 例子</p>
 
-<p>node.js BS Authorization Code Grant：node.js B/S 例子</p>
+<p><strong>node.js BS Authorization Code Grant：</strong>node.js B/S 例子</p>
 
-<p>附注：</p>
+<p>附1：</p>
 
 <p><strong>认证站点:</strong> <a href="http://www.iccnu.net/">http://www.iccnu.net/</a></p>
 
 <p><strong>认证页面:</strong> <a href="http://www.iccnu.net/oauth2/authorize">http://www.iccnu.net/oauth2/authorize</a></p>
 
+<p>(租户应用页面上在点击 使用ICCNU账户登录 时，需要重定向至的地址)</p>
+
 <p><strong>AccessToken API End Point:</strong> <a href="http://www.iccnu.net/api/oauth2/token">http://www.iccnu.net/api/oauth2/token</a></p>
 
+<p>(租户应用在得到Code后，需要使用Code到主站上获取已认证用户的AccessToken，这是跟据Code获取AccessToken的服务地址)</p>
+
 <p><strong>Me API End Point:</strong> <a href="http://www.iccnu.net/api/oauth2/me">http://www.iccnu.net/api/oauth2/me</a></p>
+
+<p>(租户应用在得到AccessToken后，根据AccessToken获得用户认证信息的服务地址)</p>
+
+<p>附2 土巴兔利用新浪微博OAuth2服务认证的业务流程 与 dot net B/S例子中租户应用利用ICCNUOAuth2服务认证的业务流程的 对照</p>
+
+<p>step 1 土巴兔/租户应用登录，重定向至认证站点</p>
+
+<p><img src="https://raw.githubusercontent.com/ccnuyan/iccnu-oauth2/master/imgs/tu01.jpg" alt=""></p>
+
+<p><img src="https://raw.githubusercontent.com/ccnuyan/iccnu-oauth2/master/imgs/tenant01.jpg" alt=""></p>
+
+<p>step 2 用户在新浪微博/ICCNU上登陆，授权土巴兔/租户应用获取认证信息，然后重定向至土巴兔/租户应用站点</p>
+
+<p><img src="https://raw.githubusercontent.com/ccnuyan/iccnu-oauth2/master/imgs/tu02.jpg" alt=""></p>
+
+<p><img src="https://raw.githubusercontent.com/ccnuyan/iccnu-oauth2/master/imgs/tenant02.jpg" alt=""></p>
+
+<p>step 3 土巴兔/租户站点获取到用户的认证信息，认证结束，土巴兔/租户站点继续其自己的业务</p>
+
+<p>从图中可以看见，由于土巴兔有其自己的用户，所以土巴兔可以让已有土巴兔账户的用户选择绑定已有的账户；若使用微博认证服务登录的用户原来并没有在土巴兔上注册过，则选择跳过此步，可以直接根据微博认证服务返回的认证信息创建新的账户。</p>
+
+<p><img src="https://raw.githubusercontent.com/ccnuyan/iccnu-oauth2/master/imgs/tu03.jpg" alt=""></p>
+
+<p>而在dot net B/S例子中，租户应用直接根据返回的认证信息创建了新的用户
+<img src="https://raw.githubusercontent.com/ccnuyan/iccnu-oauth2/master/imgs/tenant03.jpg" alt=""></p>
       </section>
     </div>
 
