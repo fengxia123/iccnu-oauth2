@@ -46,11 +46,11 @@ http://ccnuyan.github.io/iccnu-oauth2
 ####ÈÏÖ¤Á÷³Ì
 1 ÓÃ»§µã»÷×â»§Ó¦ÓÃÍøÒ³ÉÏµÄ¡°Ê¹ÓÃICCNUÕË»§µÇÂ¼¡±Ê±£¬Ð¯´ø×â»§×¢²á²ÎÊý£¨°üÀ¨»Øµ÷µØÖ·£¬×â»§Ó¦ÓÃId£¬ÈÏÖ¤ÀàÐÍµÈ£©Ìø×ªµ½ÈÏÖ¤Ò³Ãæ¡£
 
-2 ÓÃ»§µÇÂ¼ºó£¬ÈÏÖ¤Ò³Ãæ³ÊÏÖÄãµÄÓ¦ÓÃÐÅÏ¢¼°ÓÃ»§¸öÈËÐÅÏ¢£¬ÓÃ»§ÊÚÈ¨×â»§Ó¦ÓÃ£¨ÓÃ»§ÊÚÈ¨×â»§¡¢±íÊ¾ÓÃ»§ÔÊÐí×â»§Ó¦ÓÃÍ¨¹ý»ñµÃµ½µÄAccessToken·ÃÎÊÈÏÖ¤Ö÷Õ¾µÄ·þÎñ£¬°üÀ¨ÍøÅÌ·þÎñ£¬×ÊÔ´·þÎñµÈ£¬»ñµÃµ½ÓÃ»§µÄ×ÊÔ´£©Ö®ºó£¬Ð¯´øcodeÌø×ª»ØÄãµÄÓ¦ÓÃµÄ»Øµ÷Ò³Ãæ¡£
+2.1 ÓÃ»§µÇÂ¼ºó£¬ÈÏÖ¤Ò³Ãæ³ÊÏÖÄãµÄÓ¦ÓÃÐÅÏ¢¼°ÓÃ»§¸öÈËÐÅÏ¢£¬ÓÃ»§ÊÚÈ¨×â»§Ó¦ÓÃ£¨ÓÃ»§ÊÚÈ¨×â»§¡¢±íÊ¾ÓÃ»§ÔÊÐí×â»§Ó¦ÓÃÍ¨¹ý»ñµÃµ½µÄAccessToken·ÃÎÊÈÏÖ¤Ö÷Õ¾µÄ·þÎñ£¬°üÀ¨ÍøÅÌ·þÎñ£¬×ÊÔ´·þÎñµÈ£¬»ñµÃµ½ÓÃ»§µÄ×ÊÔ´£©Ö®ºó£¬Ð¯´øcodeÌø×ª»ØÄãµÄÓ¦ÓÃµÄ»Øµ÷Ò³Ãæ¡£
 
-3 ×â»§Ó¦ÓÃ»Øµ÷Ò³ÃæÔÚ´¦ÀíÂß¼­ÖÐ£¬Ð¯´øcode¼°×â»§µÄÐÅÏ¢£¨°üÀ¨»Øµ÷µØÖ·£¬×â»§Ó¦ÓÃId£¬×â»§Ó¦ÓÃÃÜÂë£¬ÈÏÖ¤ÀàÐÍ£©¼°ÉêÇë·ÃÎÊµÄ·þÎñÓò£¨ÔÝÎªÈ«Óò£©µÈ£¬µ÷ÓÃÈÏÖ¤Õ¾µãµÄtoken·þÎñ£¬µÃµ½ÓÃ»§µÄAccessToken¡£
+2.2 ×â»§Ó¦ÓÃ»Øµ÷Ò³ÃæÔÚ´¦ÀíÂß¼­ÖÐ£¬Ð¯´øcode¼°×â»§µÄÐÅÏ¢£¨°üÀ¨»Øµ÷µØÖ·£¬×â»§Ó¦ÓÃId£¬×â»§Ó¦ÓÃÃÜÂë£¬ÈÏÖ¤ÀàÐÍ£©¼°ÉêÇë·ÃÎÊµÄ·þÎñÓò£¨ÔÝÎªÈ«Óò£©µÈ£¬µ÷ÓÃÈÏÖ¤Õ¾µãµÄtoken·þÎñ£¬µÃµ½ÓÃ»§µÄAccessToken¡£
 
-4 ×â»§Ó¦ÓÃÍ¨¹ýAccessTokenµ÷ÓÃÈÏÖ¤Õ¾µãµÄMe·þÎñ£¬µÃµ½ÓÃ»§µÄÈÏÖ¤ÐÅÏ¢£¬ÈÏÖ¤Á÷³Ì½áÊø¡£
+3 ×â»§Ó¦ÓÃÍ¨¹ýAccessTokenµ÷ÓÃÈÏÖ¤Õ¾µãµÄMe·þÎñ£¬µÃµ½ÓÃ»§µÄÈÏÖ¤ÐÅÏ¢£¬ÈÏÖ¤Á÷³Ì½áÊø¡£
 
 ´ËÊ±×â»§Ó¦ÓÃÒÑ¾­ÖªµÀµ÷ÓÃÈÏÖ¤Õ¾µãICCNUµÇÂ¼µÄÓÃ»§µÄ»ù±¾ÐÅÏ¢£¬¿ÉÒÔ¼ÌÐø×â»§Ó¦ÓÃ×Ô¼ºµÄÒµÎñ£¨°ó¶¨ÒÑ´æÔÚµÄ±¾µØÓÃ»§»òÕß¸ù¾ÝµÇÂ¼ÐÅÏ¢´´½¨ÓÃ»§µÈµÈ£©¡£
 
@@ -98,8 +98,6 @@ https://tools.ietf.org/html/rfc6749#section-4.1
 Resource Owner Password Credentials Grant
 https://tools.ietf.org/html/rfc6749#section-4.3
 
-ÈÏÖ¤Á÷³ÌµÄ¾ßÌå¼¼ÊõÏ¸½Ú£¬´«²Î·½Ê½µÈ¼ÌÐø¸üÐÂ
-
 ##°üÖÐµÄÄÚÈÝ
 **dot net BS Authorization Code Grant£º**dot net B/S Àý×Ó (ÈÏÖ¤Á÷³Ì¼û¸½2)
 
@@ -107,7 +105,7 @@ https://tools.ietf.org/html/rfc6749#section-4.3
 
 **node.js BS Authorization Code Grant£º**node.js B/S Àý×Ó
 
-¸½1£º
+##¸½1 ¸÷·þÎñµ÷ÓÃµØÖ·£¨´«²Î·½Ê½µÈ¼ÌÐø¸üÐÂ£©£º
 
 **ÈÏÖ¤Õ¾µã:** http://www.iccnu.net/
 
@@ -123,7 +121,9 @@ https://tools.ietf.org/html/rfc6749#section-4.3
 
 (×â»§Ó¦ÓÃÔÚµÃµ½AccessTokenºó£¬¸ù¾ÝAccessToken»ñµÃÓÃ»§ÈÏÖ¤ÐÅÏ¢µÄ·þÎñµØÖ·)
 
-¸½2 ÍÁ°ÍÍÃÀûÓÃÐÂÀËÎ¢²©OAuth2·þÎñÈÏÖ¤µÄÒµÎñÁ÷³Ì Óë dot net B/SÀý×ÓÖÐ×â»§Ó¦ÓÃÀûÓÃICCNUOAuth2·þÎñÈÏÖ¤µÄÒµÎñÁ÷³ÌµÄ ¶ÔÕÕ
+##¸½2 ÈÏÖ¤Á÷³ÌÑùÀý¶ÔÕÕ
+
+ÍÁ°ÍÍÃÀûÓÃÐÂÀËÎ¢²©OAuth2·þÎñÈÏÖ¤µÄÒµÎñÁ÷³Ì Óë dot net B/SÀý×ÓÖÐ×â»§Ó¦ÓÃÀûÓÃICCNUOAuth2·þÎñÈÏÖ¤µÄÒµÎñÁ÷³Ì ¶ÔÕÕ
 
 step 1 ÍÁ°ÍÍÃ/×â»§Ó¦ÓÃµÇÂ¼£¬ÖØ¶¨ÏòÖÁÈÏÖ¤Õ¾µã
 
@@ -145,3 +145,5 @@ step 3 ÍÁ°ÍÍÃ/×â»§Õ¾µã»ñÈ¡µ½ÓÃ»§µÄÈÏÖ¤ÐÅÏ¢£¬ÈÏÖ¤½áÊø£¬ÍÁ°ÍÍÃ/×â»§Õ¾µã¼ÌÐøÆä×Ô¼ºµ
 
 ¶øÔÚdot net B/SÀý×ÓÖÐ£¬×â»§Ó¦ÓÃÖ±½Ó¸ù¾Ý·µ»ØµÄÈÏÖ¤ÐÅÏ¢´´½¨ÁËÐÂµÄÓÃ»§
 ![](https://raw.githubusercontent.com/ccnuyan/iccnu-oauth2/master/imgs/tenant03.jpg)
+
+QQ83000710 ÑÏÖÐ»ª
