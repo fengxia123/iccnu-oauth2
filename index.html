@@ -31,7 +31,9 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>
+        <p><a href="http://ccnuyan.github.io/iccnu-oauth2">http://ccnuyan.github.io/iccnu-oauth2</a></p>
+
+<h1>
 <a id="iccnu-oauth2-authentication-flow-instruction" class="anchor" href="#iccnu-oauth2-authentication-flow-instruction" aria-hidden="true"><span class="octicon octicon-link"></span></a>ICCNU Oauth2 Authentication Flow Instruction</h1>
 
 <hr>
@@ -91,11 +93,11 @@
 
 <p>1 用户点击租户应用网页上的“使用ICCNU账户登录”时，携带租户注册参数（包括回调地址，租户应用Id，认证类型等）跳转到认证页面。</p>
 
-<p>2 用户登录后，认证页面呈现你的应用信息及用户个人信息，用户授权租户应用（用户授权租户、表示用户允许租户应用通过获得到的AccessToken访问认证主站的服务，包括网盘服务，资源服务等，获得到用户的资源）之后，携带code跳转回你的应用的回调页面。</p>
+<p>2.1 用户登录后，认证页面呈现你的应用信息及用户个人信息，用户授权租户应用（用户授权租户、表示用户允许租户应用通过获得到的AccessToken访问认证主站的服务，包括网盘服务，资源服务等，获得到用户的资源）之后，携带code跳转回你的应用的回调页面。</p>
 
-<p>3 租户应用回调页面在处理逻辑中，携带code及租户的信息（包括回调地址，租户应用Id，租户应用密码，认证类型）及申请访问的服务域（暂为全域）等，调用认证站点的token服务，得到用户的AccessToken。</p>
+<p>2.2 租户应用回调页面在处理逻辑中，携带code及租户的信息（包括回调地址，租户应用Id，租户应用密码，认证类型）及申请访问的服务域（暂为全域）等，调用认证站点的token服务，得到用户的AccessToken。</p>
 
-<p>4 租户应用通过AccessToken调用认证站点的Me服务，得到用户的认证信息，认证流程结束。</p>
+<p>3 租户应用通过AccessToken调用认证站点的Me服务，得到用户的认证信息，认证流程结束。</p>
 
 <p>此时租户应用已经知道调用认证站点ICCNU登录的用户的基本信息，可以继续租户应用自己的业务（绑定已存在的本地用户或者根据登录信息创建用户等等）。</p>
 
@@ -150,8 +152,6 @@
 <p>Resource Owner Password Credentials Grant
 <a href="https://tools.ietf.org/html/rfc6749#section-4.3">https://tools.ietf.org/html/rfc6749#section-4.3</a></p>
 
-<p>认证流程的具体技术细节，传参方式等继续更新</p>
-
 <h2>
 <a id="包中的内容" class="anchor" href="#%E5%8C%85%E4%B8%AD%E7%9A%84%E5%86%85%E5%AE%B9" aria-hidden="true"><span class="octicon octicon-link"></span></a>包中的内容</h2>
 
@@ -161,7 +161,8 @@
 
 <p><strong>node.js BS Authorization Code Grant：</strong>node.js B/S 例子</p>
 
-<p>附1：</p>
+<h2>
+<a id="附1-各服务调用地址传参方式等继续更新" class="anchor" href="#%E9%99%841-%E5%90%84%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8%E5%9C%B0%E5%9D%80%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E7%AD%89%E7%BB%A7%E7%BB%AD%E6%9B%B4%E6%96%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>附1 各服务调用地址（传参方式等继续更新）：</h2>
 
 <p><strong>认证站点:</strong> <a href="http://www.iccnu.net/">http://www.iccnu.net/</a></p>
 
@@ -177,7 +178,10 @@
 
 <p>(租户应用在得到AccessToken后，根据AccessToken获得用户认证信息的服务地址)</p>
 
-<p>附2 土巴兔利用新浪微博OAuth2服务认证的业务流程 与 dot net B/S例子中租户应用利用ICCNUOAuth2服务认证的业务流程的 对照</p>
+<h2>
+<a id="附2-认证流程样例对照" class="anchor" href="#%E9%99%842-%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B%E6%A0%B7%E4%BE%8B%E5%AF%B9%E7%85%A7" aria-hidden="true"><span class="octicon octicon-link"></span></a>附2 认证流程样例对照</h2>
+
+<p>土巴兔利用新浪微博OAuth2服务认证的业务流程 与 dot net B/S例子中租户应用利用ICCNUOAuth2服务认证的业务流程 对照</p>
 
 <p>step 1 土巴兔/租户应用登录，重定向至认证站点</p>
 
@@ -199,6 +203,11 @@
 
 <p>而在dot net B/S例子中，租户应用直接根据返回的认证信息创建了新的用户
 <img src="https://raw.githubusercontent.com/ccnuyan/iccnu-oauth2/master/imgs/tenant03.jpg" alt=""></p>
+
+<h2>
+<a id="附3-联系方式" class="anchor" href="#%E9%99%843-%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a>附3 联系方式</h2>
+
+<p>QQ83000710 严中华</p>
       </section>
     </div>
 
