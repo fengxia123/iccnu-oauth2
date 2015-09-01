@@ -5,147 +5,237 @@ http://ccnuyan.github.io/iccnu-oauth2
 ***
 
 ## Before You Begin
-�������⻧Ӧ�õĵ�����֤��վ OAuth2 ����֤�������֤���̡�����ĵ����⻧Ӧ�õĿ����߲ο���
+这里是租户应用的调用认证主站 OAuth2 的认证服务的认证流程。这个文档给租户应用的开发者参考。
 
-��ΪӦ�õĿ����ߣ�����Ҫ���Ӧ�õĲ�ͬ���ͣ�����Ҫ���õ���֤���̽���ѡ��B/SӦ����Ҫ�ο�Authorization Code Grant Flow��C/SӦ����Ҫ�ο�Resource Owner Password Credentials Grant Flow��
+作为应用的开发者，你需要针对应用的不同类型，对需要采用的认证流程进行选择。B/S应用需要参考Authorization Code Grant Flow，C/S应用需要参考Resource Owner Password Credentials Grant Flow。
 
-��֤���̽������⻧Ӧ����Ҫ�����Լ���Ӧ���Ƿ������߲������û�Ⱥ�壬�����������û���������˻��ĵ�¼���̡�
+认证流程结束后，租户应用需要根据自己的应用是否已上线并存在用户群体，继续创建新用户或绑定已有账户的登录流程。
   
 ***
 
-####1.�⻧ΪB/SӦ��
-��Ҫ�ο� Authorization Code Grant Flow���û�����֤վ���¼����ת������Ӧ�ú�Ӧ��ʾ�û��������˻���ֱ�Ӵ������û���������¼״̬��
-####2.�⻧ΪC/SӦ��
-��Ҫ�ο� Resource Owner Password Credentials Grant Flow���û���¼������Ӧ�ú�Ӧ��ʾ�û��������˻���ֱ�Ӵ������û���������¼״̬��
+####1.租户为B/S应用
+需要参考 Authorization Code Grant Flow，用户在认证站点登录并跳转至您的应用后，应提示用户绑定已有账户或直接创建新用户，后进入登录状态。
+####2.租户为C/S应用
+需要参考 Resource Owner Password Credentials Grant Flow，用户登录至您的应用后，应提示用户绑定已有账户或直接创建新用户，后进入登录状态。
 
-##1 �⻧ΪB/SӦ��: ʹ�� Authorization Code Grant Flow ��֤
+##1 租户为B/S应用: 使用 Authorization Code Grant Flow 认证
 
-####ʹ���Ⱦ�����
-1. ����û���Ҫ����ICCNU��ע��Ϊ�û���
+####使用先决条件
+1. 你的用户需要现在ICCNU上注册为用户。
 
-2. ����Ҫ�����Ӧ�������ΪICCNU��֤������⻧��
+2. 你需要将你的应用申请成为ICCNU认证服务的租户。
 
-�����ΪICCNU��֤������⻧ʱ���⻧Ӧ����ҪΪ��֤վ�����Ա�ṩ����Ϣ������
+申请成为ICCNU认证服务的租户时，租户应用需要为认证站点管理员提供的信息包括：
 
-   **�ص���ַ** "redirectURI" : "http://localhost:8080/account/login"
+   **回调地址** "redirectURI" : "http://localhost:8080/account/login"
 
-   **�⻧Ӧ��Id** "id" : "code_test"
+   **租户应用Id** "id" : "code_test"
 
-   **�⻧Ӧ������** "secret" : *****
+   **租户应用密码** "secret" : *****
 
-   **��ҳ��ַ** "homeURI" : "http://localhost:8080/"
+   **主页地址** "homeURI" : "http://localhost:8080/"
 
-   **�⻧Ӧ����** "name" : "����Ӧ����1"
+   **租户应用名** "name" : "测试应用名1"
 
-   **�⻧Ӧ������** "description" : "�����ǲ���Ӧ��1��������Ϣ"
+   **租户应用描述** "description" : "这里是测试应用1的描述信息"
 
-   **��֤����** "authType" : "code"
+   **认证类型** "authType" : "code"
 
-���У��ص���ַ���⻧Ӧ��Id���⻧Ӧ������ΪAuthorization Code Grant Flow��֤��������Ҫ�õ��ı����ֶ�; ��ҳ��ַ���⻧Ӧ����, �⻧Ӧ������Ϊ��ʾ���û����ֶΣ����Ǳ���ģ���֤������Authorization Code Grant Flow�й̶�Ϊ"Code"��   
+其中，回调地址、租户应用Id及租户应用密码为Authorization Code Grant Flow认证流程中需要用到的必须字段; 主页地址，租户应用名, 租户应用描述为显示给用户的字段，不是必须的；认证类型在Authorization Code Grant Flow中固定为"Code"。   
 
-####��֤����
-1 �û�����⻧Ӧ����ҳ�ϵġ�ʹ��ICCNU�˻���¼��ʱ��Я���⻧ע������������ص���ַ���⻧Ӧ��Id����֤���͵ȣ���ת����֤ҳ�档
+####认证流程
+1 用户点击租户应用网页上的“使用ICCNU账户登录”时，携带租户注册参数（包括回调地址，租户应用Id，认证类型等）跳转到认证页面。
 
-2.1 �û���¼����֤ҳ��������Ӧ����Ϣ���û�������Ϣ���û���Ȩ�⻧Ӧ�ã��û���Ȩ�⻧����ʾ�û������⻧Ӧ��ͨ����õ���AccessToken������֤��վ�ķ��񣬰������̷�����Դ����ȣ���õ��û�����Դ��֮��Я��code��ת�����Ӧ�õĻص�ҳ�档
+2.1 用户登录后，认证页面呈现你的应用信息及用户个人信息，用户授权租户应用（用户授权租户、表示用户允许租户应用通过获得到的AccessToken访问认证主站的服务，包括网盘服务，资源服务等，获得到用户的资源）之后，携带code跳转回你的应用的回调页面。
 
-2.2 �⻧Ӧ�ûص�ҳ���ڴ����߼��У�Я��code���⻧����Ϣ�������ص���ַ���⻧Ӧ��Id���⻧Ӧ�����룬��֤���ͣ���������ʵķ�������Ϊȫ�򣩵ȣ�������֤վ���token���񣬵õ��û���AccessToken��
+2.2 租户应用回调页面在处理逻辑中，携带code及租户的信息（包括回调地址，租户应用Id，租户应用密码，认证类型）及申请访问的服务域（暂为全域）等，调用认证站点的token服务，得到用户的AccessToken。
 
-3 �⻧Ӧ��ͨ��AccessToken������֤վ���Me���񣬵õ��û�����֤��Ϣ����֤���̽�����
+3 租户应用通过AccessToken调用认证站点的Me服务，得到用户的认证信息，认证流程结束。
 
-��ʱ�⻧Ӧ���Ѿ�֪��������֤վ��ICCNU��¼���û��Ļ�����Ϣ�����Լ����⻧Ӧ���Լ���ҵ�񣨰��Ѵ��ڵı����û����߸��ݵ�¼��Ϣ�����û��ȵȣ���
+此时租户应用已经知道调用认证站点ICCNU登录的用户的基本信息，可以继续租户应用自己的业务（绑定已存在的本地用户或者根据登录信息创建用户等等）。
 
-##2 �⻧ΪC/SӦ��: ʹ�� Resource Owner Password Credentials Grant Flow ��֤
+##2 租户为C/S应用: 使用 Resource Owner Password Credentials Grant Flow 认证
 
-####ʹ���Ⱦ�����
-1. ����û���Ҫ����ICCNU��ע��Ϊ�û���
+####使用先决条件
+1. 你的用户需要现在ICCNU上注册为用户。
 
-2. ����Ҫ�����Ӧ�������ΪICCNU��֤������⻧��
+2. 你需要将你的应用申请成为ICCNU认证服务的租户。
 
-�����ΪICCNU��֤������⻧ʱ���⻧Ӧ����ҪΪ��֤վ�����Ա�ṩ����Ϣ������
+申请成为ICCNU认证服务的租户时，租户应用需要为认证站点管理员提供的信息包括：
 
-   **�⻧Ӧ��Id** "id" : "code_test"
+   **租户应用Id** "id" : "code_test"
 
-   **�⻧Ӧ������** "secret" : *****
+   **租户应用密码** "secret" : *****
 
-   **��ҳ��ַ "homeURI"** : "http://localhost:8080/"
+   **主页地址 "homeURI"** : "http://localhost:8080/"
 
-   **�⻧Ӧ����** "name" : "����Ӧ����1"
+   **租户应用名** "name" : "测试应用名1"
 
-   **�⻧Ӧ������** "description" : "�����ǲ���Ӧ��1��������Ϣ"
+   **租户应用描述** "description" : "这里是测试应用1的描述信息"
 
-   **��֤����** "authType" : "resource_owner"
+   **认证类型** "authType" : "resource_owner"
 
-���У��⻧Ӧ��Id���⻧Ӧ������ΪResource Owner Password Credentials Grant Flow��֤��������Ҫ�õ��ı����ֶ�; ��ҳ��ַ���⻧Ӧ����, �⻧Ӧ������Ϊ��ʾ���û����ֶΣ����Ǳ���ģ���֤������Resource Owner Password Credentials Grant Flow�й̶�Ϊ"resource_owner"��   
+其中，租户应用Id及租户应用密码为Resource Owner Password Credentials Grant Flow认证流程中需要用到的必须字段; 主页地址，租户应用名, 租户应用描述为显示给用户的字段，不是必须的；认证类型在Resource Owner Password Credentials Grant Flow中固定为"resource_owner"。   
 
-C/SӦ�ò�������������н�����֤���̣����Բ���Ҫ�ṩ�ص���ַ�ֶΡ�
+C/S应用并不是在浏览器中进行认证流程，所以不需要提供回调地址字段。
 
-####��֤����
+####认证流程
 
-1 �û�����ͻ��˵ġ�ʹ��ICCNU�˻���¼��ʱ����������֤վ����ע����û��������롣
+1 用户点击客户端的“使用ICCNU账户登录”时，输入在认证站点上注册的用户名与密码。
 
-2 �ͻ����ں�̨Я���û�������û��������뼰�⻧����Ϣ�������ص���ַ���⻧Ӧ��Id���⻧Ӧ�����룬��֤���ͣ���������ʵķ�������Ϊȫ�򣩵ȣ�������֤վ���token���񣬵õ��û���AccessToken��
+2 客户端在后台携带用户输入的用户名与密码及租户的信息（包括回调地址，租户应用Id，租户应用密码，认证类型）及申请访问的服务域（暂为全域）等，调用认证站点的token服务，得到用户的AccessToken。
 
-3 �⻧Ӧ��ͨ��AccessToken������֤վ���Me���񣬵õ��û�����֤��Ϣ����֤���̽�����
+3 租户应用通过AccessToken调用认证站点的Me服务，得到用户的认证信息，认证流程结束。
 
-��ʱ�⻧Ӧ���Ѿ�֪����¼�û��Ļ�����Ϣ�����Լ����⻧Ӧ���Լ���ҵ�񣨰��Ѵ��ڵı����û����߸��ݵ�¼��Ϣ�����û��ȵȣ���
+此时租户应用已经知道登录用户的基本信息，可以继续租户应用自己的业务（绑定已存在的本地用户或者根据登录信息创建用户等等）。
 
-PS: B/Sվ�������ʹ�� Resource Owner Password Credentials Grant, ���ǲ�������������
+PS: B/S站点亦可以使用 Resource Owner Password Credentials Grant, 但是不建议这样做。
 
-##�ο�
+##参考
 Authorization Code Grant
 https://tools.ietf.org/html/rfc6749#section-4.1
 
 Resource Owner Password Credentials Grant
 https://tools.ietf.org/html/rfc6749#section-4.3
 
-##���е�����
-**dot net BS Authorization Code Grant��**dot net B/S ���� (��֤���̼���2)
+##包中的内容
+**dot net BS Authorization Code Grant：**dot net B/S 例子 (认证流程见附2)
 
-**dot net CS Resource Owner Password Credentials Grant��**dot net C/S ����
+**dot net CS Resource Owner Password Credentials Grant：**dot net C/S 例子
 
-**node.js BS Authorization Code Grant��**node.js B/S ����
+**node.js BS Authorization Code Grant：**node.js B/S 例子
 
-##��1 ��������õ�ַ�����η�ʽ�ȼ������£���
+##附1 各服务调用地址（传参方式等继续更新）：
 
-**��֤վ��:** http://www.iccnu.net/
+**认证站点:** http://www.iccnu.net/
 
-**��֤ҳ��:** http://www.iccnu.net/oauth2/authorize
+**认证页面:** http://www.iccnu.net/oauth2/authorize
 
-(�⻧Ӧ��ҳ�����ڵ�� ʹ��ICCNU�˻���¼ ʱ����Ҫ�ض������ĵ�ַ)
+(租户应用页面上在点击 使用ICCNU账户登录 时，需要重定向至的地址)
 
 **AccessToken API End Point:** http://www.iccnu.net/api/oauth2/token
 
-(�⻧Ӧ���ڵõ�Code����Ҫʹ��Code����վ�ϻ�ȡ����֤�û���AccessToken�����Ǹ���Code��ȡAccessToken�ķ����ַ)
+(租户应用在得到Code后，需要使用Code到主站上获取已认证用户的AccessToken，这是跟据Code获取AccessToken的服务地址)
 
 **Me API End Point:** http://www.iccnu.net/api/oauth2/me
 
-(�⻧Ӧ���ڵõ�AccessToken�󣬸���AccessToken����û���֤��Ϣ�ķ����ַ)
+(租户应用在得到AccessToken后，根据AccessToken获得用户认证信息的服务地址)
 
-##��2 ��֤������������
+##附2 认证流程样例对照
 
-��������������΢��OAuth2������֤��ҵ������ �� dot net B/S�������⻧Ӧ������ICCNUOAuth2������֤��ҵ������ ����
+土巴兔利用新浪微博OAuth2服务认证的业务流程 与 dot net B/S例子中租户应用利用ICCNUOAuth2服务认证的业务流程 对照
 
-step 1 ������/�⻧Ӧ�õ�¼���ض�������֤վ��
+step 1 土巴兔/租户应用登录，重定向至认证站点
 
 ![](https://raw.githubusercontent.com/ccnuyan/iccnu-oauth2/master/imgs/tu01.jpg)
 
 ![](https://raw.githubusercontent.com/ccnuyan/iccnu-oauth2/master/imgs/tenant01.jpg)
 
-step 2 �û�������΢��/ICCNU�ϵ�½����Ȩ������/�⻧Ӧ�û�ȡ��֤��Ϣ��Ȼ���ض�����������/�⻧Ӧ��վ��
+step 2 用户在新浪微博/ICCNU上登陆，授权土巴兔/租户应用获取认证信息，然后重定向至土巴兔/租户应用站点
 
 ![](https://raw.githubusercontent.com/ccnuyan/iccnu-oauth2/master/imgs/tu02.jpg)
 
 ![](https://raw.githubusercontent.com/ccnuyan/iccnu-oauth2/master/imgs/tenant02.jpg)
 
-step 3 ������/�⻧վ���ȡ���û�����֤��Ϣ����֤������������/�⻧վ��������Լ���ҵ��
+step 3 土巴兔/租户站点获取到用户的认证信息，认证结束，土巴兔/租户站点继续其自己的业务
 
-��ͼ�п��Կ��������������������Լ����û������������ÿ����������������˻����û�ѡ������е��˻�����ʹ��΢����֤�����¼���û�ԭ����û������������ע�������ѡ�������˲�������ֱ�Ӹ���΢����֤���񷵻ص���֤��Ϣ�����µ��˻���
+从图中可以看见，由于土巴兔有其自己的用户，所以土巴兔可以让已有土巴兔账户的用户选择绑定已有的账户；若使用微博认证服务登录的用户原来并没有在土巴兔上注册过，则选择跳过此步，可以直接根据微博认证服务返回的认证信息创建新的账户。
 
 ![](https://raw.githubusercontent.com/ccnuyan/iccnu-oauth2/master/imgs/tu03.jpg)
 
-����dot net B/S�����У��⻧Ӧ��ֱ�Ӹ��ݷ��ص���֤��Ϣ�������µ��û�
+而在dot net B/S例子中，租户应用直接根据返回的认证信息创建了新的用户
 ![](https://raw.githubusercontent.com/ccnuyan/iccnu-oauth2/master/imgs/tenant03.jpg)
 
-##��3 ��ϵ��ʽ
+##附3 联系方式
 
-QQ83000710 ���л�
+QQ83000710 严中华
+
+##附4 HTTP 正文
+
+### 1 exchage code for token
+请求：
+
+POST http://www.iccnu.net/api/oauth2/token HTTP/1.1
+
+Authorization: Basic Y29kZV90ZXN0OmNvZGVfdGVzdA==
+
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+
+User-Agent: DotNetOpenAuth.Core/4.3.4.13329
+
+Host: www.iccnu.net
+
+Cache-Control: no-store,no-cache
+
+Pragma: no-cache
+
+Content-Length: 112
+
+Expect: 100-continue
+
+Connection: Keep-Alive
+
+请求Body
+
+    code=Zsd7aihG4qVD0771&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Faccount%2Flogin&grant_type=authorization_code
+
+响应
+HTTP/1.1 200 OK
+Server: nginx/1.4.6 (Ubuntu)
+Date: Wed, 15 Jul 2015 07:06:51 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: X-HTTP-Method-Override, Accept-Encoding
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+X-Download-Options: noopen
+Cache-Control: no-store
+Pragma: no-cache
+set-cookie: connect.sid=s%3A_e095HH0o4xZfPn-6lq46tOJibYzUwWG.qvLImv0AmgqRMb2Owsr1uQSozx8QwoxsIc75lvPsgfY; Path=/; HttpOnly
+
+响应Body
+
+    {
+	"access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3c6aWNjbnUubmV0Iiwic3ViIjoiNTVhNWI1ZTk1ZDAwNTQwMTAwMjBkMzEzIiwiYXVkIjoiNTU2ODkwMGYxMDA4ODc3ODExOTNmYTIyIiwic2NvcGUiOiJmdWxsIn0.H3zwEsZbeCM1QUf-AX7yfSqzJhmTB8NFQJ_2Vqf1S0w",
+	"token_type":"Bearer"
+	}
+
+
+### 2 get user info by token
+请求：
+GET http://www.iccnu.net/api/oauth2/me HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3c6aWNjbnUubmV0Iiwic3ViIjoiNTVhNWI1ZTk1ZDAwNTQwMTAwMjBkMzEzIiwiYXVkIjoiNTU2ODkwMGYxMDA4ODc3ODExOTNmYTIyIiwic2NvcGUiOiJmdWxsIn0.H3zwEsZbeCM1QUf-AX7yfSqzJhmTB8NFQJ_2Vqf1S0w
+Host: www.iccnu.net
+
+响应
+HTTP/1.1 200 OK
+Server: nginx/1.4.6 (Ubuntu)
+Date: Thu, 16 Jul 2015 04:57:01 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 329
+Connection: keep-alive
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+X-Download-Options: noopen
+ETag: W/"149-2c346f30"
+set-cookie: connect.sid=s%3AjBPIyXvn9hdIvQvMYlw3Bl-9G6L253Fc.PrQDsrlzhsCDe7tkJr%2BKyUzeHAVHrcRBjPBAdvT3XHE; Path=/; HttpOnly
+Vary: Accept-Encoding
+
+响应Body
+
+    {
+	"_id":"55a5b5e95d0054010020d313",
+	"rootDirectory":"55a5b5e95d0054010020d314",
+	"displayName":"starcyan",
+	"provider":"starc",
+	"username":"yan_starc",
+	"__v":0,
+	"created":"2015-07-15T01:22:49.394Z",
+	"roles":["user"],
+	"email":"yan@starc.com.cn",
+	"lastName":"yan",
+	"firstName":"starc"
+	}
