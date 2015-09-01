@@ -208,6 +208,62 @@
 <a id="附3-联系方式" class="anchor" href="#%E9%99%843-%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a>附3 联系方式</h2>
 
 <p>QQ83000710 严中华</p>
+
+<h2>
+<a id="附4-http-正文" class="anchor" href="#%E9%99%844-http-%E6%AD%A3%E6%96%87" aria-hidden="true"><span class="octicon octicon-link"></span></a>附4 HTTP 正文</h2>
+
+<h3>
+<a id="1-exchage-code-for-token" class="anchor" href="#1-exchage-code-for-token" aria-hidden="true"><span class="octicon octicon-link"></span></a>1 exchage code for token</h3>
+
+<p>请求：</p>
+
+<p>POST <a href="http://www.iccnu.net/api/oauth2/token">http://www.iccnu.net/api/oauth2/token</a> HTTP/1.1</p>
+
+<p>Authorization: Basic Y29kZV90ZXN0OmNvZGVfdGVzdA==</p>
+
+<p>请求Body</p>
+
+<pre><code>code=Zsd7aihG4qVD0771&amp;redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Faccount%2Flogin&amp;grant_type=authorization_code
+</code></pre>
+
+<p>响应
+HTTP/1.1 200 OK</p>
+
+<p>响应Body</p>
+
+<pre><code>{
+"access_token":"[token]",
+"token_type":"Bearer"
+}
+</code></pre>
+
+<h3>
+<a id="2-get-user-info-by-token" class="anchor" href="#2-get-user-info-by-token" aria-hidden="true"><span class="octicon octicon-link"></span></a>2 get user info by token</h3>
+
+<p>请求：
+GET <a href="http://www.iccnu.net/api/oauth2/me">http://www.iccnu.net/api/oauth2/me</a> HTTP/1.1</p>
+
+<p>Authorization: Bearer [token]</p>
+
+<p>响应
+HTTP/1.1 200 OK</p>
+
+<p>响应Body</p>
+
+<pre><code>{
+"_id":"55a5b5e95d0054010020d313",
+"rootDirectory":"55a5b5e95d0054010020d314",
+"displayName":"starcyan",
+"provider":"starc",
+"username":"yan_starc",
+"__v":0,
+"created":"2015-07-15T01:22:49.394Z",
+"roles":["user"],
+"email":"yan@starc.com.cn",
+"lastName":"yan",
+"firstName":"starc"
+}
+</code></pre>
       </section>
     </div>
 
