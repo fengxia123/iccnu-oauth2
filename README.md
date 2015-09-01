@@ -161,44 +161,17 @@ Authorization: Basic Y29kZV90ZXN0OmNvZGVfdGVzdA==
 
 Content-Type: application/x-www-form-urlencoded; charset=utf-8
 
-User-Agent: DotNetOpenAuth.Core/4.3.4.13329
-
-Host: www.iccnu.net
-
-Cache-Control: no-store,no-cache
-
-Pragma: no-cache
-
-Content-Length: 112
-
-Expect: 100-continue
-
-Connection: Keep-Alive
-
 请求Body
 
     code=Zsd7aihG4qVD0771&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Faccount%2Flogin&grant_type=authorization_code
 
 响应
 HTTP/1.1 200 OK
-Server: nginx/1.4.6 (Ubuntu)
-Date: Wed, 15 Jul 2015 07:06:51 GMT
-Content-Type: application/json
-Transfer-Encoding: chunked
-Connection: keep-alive
-Vary: X-HTTP-Method-Override, Accept-Encoding
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block
-X-Content-Type-Options: nosniff
-X-Download-Options: noopen
-Cache-Control: no-store
-Pragma: no-cache
-set-cookie: connect.sid=s%3A_e095HH0o4xZfPn-6lq46tOJibYzUwWG.qvLImv0AmgqRMb2Owsr1uQSozx8QwoxsIc75lvPsgfY; Path=/; HttpOnly
 
 响应Body
 
     {
-	"access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3c6aWNjbnUubmV0Iiwic3ViIjoiNTVhNWI1ZTk1ZDAwNTQwMTAwMjBkMzEzIiwiYXVkIjoiNTU2ODkwMGYxMDA4ODc3ODExOTNmYTIyIiwic2NvcGUiOiJmdWxsIn0.H3zwEsZbeCM1QUf-AX7yfSqzJhmTB8NFQJ_2Vqf1S0w",
+	"access_token":"[token]",
 	"token_type":"Bearer"
 	}
 
@@ -206,23 +179,11 @@ set-cookie: connect.sid=s%3A_e095HH0o4xZfPn-6lq46tOJibYzUwWG.qvLImv0AmgqRMb2Owsr
 ### 2 get user info by token
 请求：
 GET http://www.iccnu.net/api/oauth2/me HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3c6aWNjbnUubmV0Iiwic3ViIjoiNTVhNWI1ZTk1ZDAwNTQwMTAwMjBkMzEzIiwiYXVkIjoiNTU2ODkwMGYxMDA4ODc3ODExOTNmYTIyIiwic2NvcGUiOiJmdWxsIn0.H3zwEsZbeCM1QUf-AX7yfSqzJhmTB8NFQJ_2Vqf1S0w
+Authorization: Bearer [token]
 Host: www.iccnu.net
 
 响应
 HTTP/1.1 200 OK
-Server: nginx/1.4.6 (Ubuntu)
-Date: Thu, 16 Jul 2015 04:57:01 GMT
-Content-Type: application/json; charset=utf-8
-Content-Length: 329
-Connection: keep-alive
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block
-X-Content-Type-Options: nosniff
-X-Download-Options: noopen
-ETag: W/"149-2c346f30"
-set-cookie: connect.sid=s%3AjBPIyXvn9hdIvQvMYlw3Bl-9G6L253Fc.PrQDsrlzhsCDe7tkJr%2BKyUzeHAVHrcRBjPBAdvT3XHE; Path=/; HttpOnly
-Vary: Accept-Encoding
 
 响应Body
 
