@@ -150,7 +150,11 @@ step 3 土巴兔/租户站点获取到用户的认证信息，认证结束，土
 
 QQ83000710 严中华
 
-##附4 HTTP 正文
+##附4 API & http context
+
+### 1 redirect full uri example
+
+	http://www.iccnu.net/oauth2/authorize?client_id=code_test&redirect_uri=http:%2F%2Flocalhost:8080%2FAccount%2FLogin&state=-0Fs7e5Pj4TGr0xGK_sqSQ&response_type=code
 
 ### 1 exchage code for token
 请求：
