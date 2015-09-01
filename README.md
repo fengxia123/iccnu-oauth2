@@ -159,8 +159,6 @@ POST http://www.iccnu.net/api/oauth2/token HTTP/1.1
 
 Authorization: Basic Y29kZV90ZXN0OmNvZGVfdGVzdA==
 
-Content-Type: application/x-www-form-urlencoded; charset=utf-8
-
 请求Body
 
     code=Zsd7aihG4qVD0771&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Faccount%2Flogin&grant_type=authorization_code
@@ -179,8 +177,8 @@ HTTP/1.1 200 OK
 ### 2 get user info by token
 请求：
 GET http://www.iccnu.net/api/oauth2/me HTTP/1.1
+
 Authorization: Bearer [token]
-Host: www.iccnu.net
 
 响应
 HTTP/1.1 200 OK
