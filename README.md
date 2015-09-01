@@ -156,7 +156,7 @@ QQ83000710 严中华
 
 	http://www.iccnu.net/oauth2/authorize?client_id=code_test&redirect_uri=http:%2F%2Flocalhost:8080%2FAccount%2FLogin&state=-0Fs7e5Pj4TGr0xGK_sqSQ&response_type=code
 
-### 1 exchage code for token
+### 2 exchage code for token
 请求：
 
 POST http://www.iccnu.net/api/oauth2/token HTTP/1.1
@@ -178,7 +178,7 @@ HTTP/1.1 200 OK
 	}
 
 
-### 2 get user info by token
+### 3 get user info by token
 请求：
 GET http://www.iccnu.net/api/oauth2/me HTTP/1.1
 
